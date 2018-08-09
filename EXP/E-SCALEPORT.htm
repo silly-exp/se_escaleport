@@ -1,0 +1,1394 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+		<meta http-equiv="Page-Enter" content="blendTrans(Duration=0)">
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<meta http-equiv="Content-Script-Type" content="text/javascript">
+
+		<title>E-SCALEPORT</title>
+
+		<link href="E-SCALEPORT_fichiers/nav_fixe.css" rel="stylesheet" type="text/css">
+		<link href="E-SCALEPORT_fichiers/nav_fixe_spe.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" type="image/x-icon" href="https://escaleport-test.csam.e2.rie.gouv.fr/escaleport/images/structure/favicon.ico"> 
+		
+		<script src="E-SCALEPORT_fichiers/util.js" type="text/javascript"></script>
+		
+		<script src="E-SCALEPORT_fichiers/menuActions.js" type="text/javascript"></script> 
+		<script src="E-SCALEPORT_fichiers/calendrier.js" type="text/javascript"></script> 
+		
+  		<script src="E-SCALEPORT_fichiers/infobulle.js" type="text/javascript"></script>
+  		<script src="E-SCALEPORT_fichiers/tooltip.js" type="text/javascript"></script>
+  
+		<!-- Ajout des js pour les taglib -->
+<!-- 		<script src="js/taglib/taglibs.min.js" type="text/javascript"></script> -->
+<!-- ######	Fichiers remplacés par taglibs.min.js Décommenter pour debug  ####### -->
+		<script src="E-SCALEPORT_fichiers/Alphanumerique.js" type="text/javascript"></script> 
+		<script src="E-SCALEPORT_fichiers/Commun.js" type="text/javascript"></script> 		
+		<script src="E-SCALEPORT_fichiers/Date.js" type="text/javascript"></script>
+		<script src="E-SCALEPORT_fichiers/Decimal.js" type="text/javascript"></script>
+		<script src="E-SCALEPORT_fichiers/Email.js" type="text/javascript"></script><style></style>  
+		<script src="E-SCALEPORT_fichiers/Phone.js" type="text/javascript"></script>  
+		<script src="E-SCALEPORT_fichiers/Entier.js" type="text/javascript"></script> 
+		<script src="E-SCALEPORT_fichiers/EntierPositif.js" type="text/javascript"></script>
+		<script src="E-SCALEPORT_fichiers/Heure.js" type="text/javascript"></script> 
+		<script src="E-SCALEPORT_fichiers/Heure2.js" type="text/javascript"></script>
+		<script src="E-SCALEPORT_fichiers/Hexadecimal.js" type="text/javascript"></script>
+		<script src="E-SCALEPORT_fichiers/Latitude.js" type="text/javascript"></script> 
+		<script src="E-SCALEPORT_fichiers/Longitude.js" type="text/javascript"></script> 
+		<script src="E-SCALEPORT_fichiers/Majuscule.js" type="text/javascript"></script>
+		<script src="E-SCALEPORT_fichiers/Pagination.js" type="text/javascript"></script>
+		<script src="E-SCALEPORT_fichiers/SelectCode.js" type="text/javascript"></script>
+		<script src="E-SCALEPORT_fichiers/SelectTagStat.js" type="text/javascript"></script>  
+		<script src="E-SCALEPORT_fichiers/Tel.js" type="text/javascript"></script>  
+		<script src="E-SCALEPORT_fichiers/Texte.js" type="text/javascript"></script> 
+		<script src="E-SCALEPORT_fichiers/TexteArea.js" type="text/javascript"></script> 
+		<script src="E-SCALEPORT_fichiers/Tri.js" type="text/javascript"></script> 
+		<script src="E-SCALEPORT_fichiers/Fabrique.js" type="text/javascript"></script>  
+		  		
+  		<script src="E-SCALEPORT_fichiers/include-1.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		 // Instanciation de la fabrique des composants graphiques
+		  window.top.fabrique	= new Fabrique();
+		  window.top.fabrique.charger();
+		  
+		  // Aide
+		  function aide() {
+		  	try {
+		  		window.open('aide.html', '', '');
+		  	} catch (exception) {
+		  		alert("Exception dans la fonction aide : " + exception.description);
+		  	}
+		  }
+		  
+	    </script>    
+	</head>
+	
+	<body style="margin:0px;" onload="init();" onmouseup="mouseup(event)" onkeyup="keyup(event); return true;">
+
+		<table class="hautPage" width="100%">
+			<tbody><tr>
+				<td class="hautPageCell1">
+					<div class="logo"></div>
+            		<div class="titreLogo">E-SCALEPORT</div>
+				</td>
+				<td class="hautPageCell2">
+					<div class="libellePort">
+						PORT de CAEN-OUISTREHAM
+						<br><br>
+						Tél : +33 231 362 200
+					</div>
+				</td>
+				<td id="nomdusite">&nbsp;</td>
+			</tr>
+		</tbody></table>
+
+
+		<table cellspacing="0" cellpadding="0" width="100%" border="0">
+	    	<tbody><tr>
+	        	
+	        	<td class="menuGauche" valign="top">
+
+	    	        
+    	        	
+
+
+
+
+
+
+
+
+
+<form name="TelecommandeForm" method="post" action="/escaleport/iPostMenuGauche.do?tokenGuard=RRJ8-HEOD-IZAP-WD3R-RAEO-C132-ME3R-OCH0">
+	<input name="idEvent" value="" id="TelecommandeForm.idEvent" type="hidden">
+<input name="tokenGuard" value="RRJ8-HEOD-IZAP-WD3R-RAEO-C132-ME3R-OCH0" type="hidden"></form>
+
+<table class="liensMenuGauche" cellspacing="0" cellpadding="1" width="100%" border="0">
+
+	<!-- Infos utilisateur connecté -->
+	<tbody><tr>
+		<td colspan="2">
+			<table class="bloc">
+				
+					<tbody><tr>
+						<th>Nom&nbsp;:</th>
+						<td>Tests Admin Tech Central PNDT</td>
+					</tr>
+				
+				<tr>
+					<th>Profil&nbsp;:</th>
+					<td>
+							ADMINISTRATEUR TECHNIQUE CENTRAL
+						</td>
+				</tr>
+				<tr>
+					<th>Port&nbsp;:</th>
+					<td>
+							Caen
+						</td>
+				</tr>
+				<tr>
+					<th>Date&nbsp;:</th>
+					<td>07/08/2018</td>
+				</tr>
+				<tr>
+					<th>Heure&nbsp;:</th>
+					<td>16:36</td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+	
+		<tr>
+			<td colspan="2" class="lienSousCartouche"><a href="#" onclick="validerMenu('deconnexion'); return false;">Déconnexion</a></td>
+		</tr>
+	
+	<tr>
+		<td colspan="2" class="lienSousCartouche"><a href="#" onclick="validerMenu('changementPort'); return false;">Changement de port</a></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+
+	
+
+		<!-- Demande -->
+		
+			<tr>
+				<td class="titreGauche" colspan="2" align="center"><div class="rounded-tr">
+						<div class="rounded-br">
+							Demandes
+						</div>
+					</div></td>
+			</tr>
+
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('rechercherDemande'); return false;">
+					Rechercher demande
+				</a></td></tr>
+			
+
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('creerDAPAQ'); return false;">
+					Créer DAPAQ
+				</a></td></tr>
+			
+
+			
+				
+					<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('importerAnnonces'); return false;">
+						Gérer POP
+					</a></td></tr>
+				
+			
+			
+
+			<tr>
+				<!-- insertion ligne vide -->
+				<td colspan="2">&nbsp;</td>
+			</tr>
+
+		
+
+
+		<!-- Mouvement -->
+		
+			<tr>
+				<td class="titreGauche" colspan="2" align="center"><div class="rounded-tr">
+						<div class="rounded-br">
+							Mouvements
+						</div>
+					</div></td>
+			</tr>
+
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('rechercherMvt'); return false;">
+					Rechercher mouvement
+				</a></td></tr>
+			
+
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('creerMvtEntree'); return false;">
+					Navire local&nbsp;:<br>  &nbsp;Créer mouvement entrée
+				</a></td></tr>
+			
+			
+				
+					<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('saisieRapideFerry'); return false;">
+						Saisie rapide mouvement ferry
+					</a></td></tr>
+				
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('registreEntreesSorties'); return false;">
+					Exporter registre E/S port 
+				</a></td></tr>
+			
+
+			
+
+			<tr>
+				<!-- insertion ligne vide -->
+				<td colspan="2">&nbsp;</td>
+			</tr>
+		
+		<!-- /Mouvement -->
+
+
+		<!-- Escale -->
+		
+			<tr>
+				<td class="titreGauche" colspan="2" align="center"><div class="rounded-tr">
+						<div class="rounded-br">
+							Escales
+						</div>
+					</div></td>
+			</tr>
+
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('rechercherDossierEscale'); return false;">
+					Rechercher dossier escale
+				</a></td></tr>
+			
+
+			<tr>
+				<!-- insertion ligne vide -->
+				<td colspan="2">&nbsp;</td>
+			</tr>
+		
+		<!-- /Escale -->
+
+
+		<!-- Exploitation -->
+		
+			<tr>
+				<td class="titreGauche" colspan="2" align="center"><div class="rounded-tr">
+						<div class="rounded-br">
+							Exploitation
+						</div>
+					</div></td>
+			</tr>
+
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('rechercherAvisConsignes'); return false;">
+					Gérer avis aux usagers et consignes
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('exploiterPAQ'); return false;">
+					Exploitation des postes à quai
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('rechercherContact'); return false;">
+					Gérer contacts
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('rechercherJournalMessage'); return false;">
+					Visualiser journaux
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('naviresBannis'); return false;">
+					Navires bannis
+				</a></td></tr>
+			
+			
+				
+					<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('rechercherCapitaine'); return false;">
+						Gérer Capitaines Ferries
+					</a></td></tr>
+				
+			
+			<tr>
+				<!-- insertion ligne vide -->
+				<td colspan="2">&nbsp;</td>
+			</tr>
+		
+
+	
+
+	
+		
+	
+	
+		
+	
+	
+		
+	
+	
+
+	<!-- Administration -->
+	
+		<tr>
+			<td class="titreGauche" colspan="2" align="center"><div class="rounded-tr">
+					<div class="rounded-br">
+						Administration
+					</div>
+				</div></td>
+		</tr>
+
+		
+			<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('administrerPorts'); return false;">
+				Administrer ports
+			</a></td></tr>
+		
+		
+		
+			<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('administrerEnvoisTIMAD'); return false;">
+				Administrer les envois vers TIMAD
+			</a></td></tr>
+		
+
+		
+			<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('importerLloyds'); return false;">
+				Importer navires Lloyds
+			</a></td></tr>
+		
+
+		
+			<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('traitementDonneesPersonnelles'); return false;">
+				Traitement des données personnelles
+			</a></td></tr>
+				
+
+		
+			<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('importerReferentiel'); return false;">
+				Importer référentiel
+			</a></td></tr>
+		
+
+		
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('parametrerPort'); return false;">
+					Paramétrer port
+				</a></td></tr>
+			
+		
+
+		
+			<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('gererCodes'); return false;">
+				Gérer tables de code
+			</a></td></tr>
+		
+
+		
+			<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('gererProfils'); return false;">
+				Gérer profils
+			</a></td></tr>
+		
+
+
+
+		
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('parametrerEcran'); return false;">
+					Paramétrer écrans
+				</a></td></tr>
+			
+		
+		
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('parametrerPop'); return false;">
+					Paramétrer POP
+				</a></td></tr>
+			
+		
+		
+		
+		
+		
+		
+		
+		
+			<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('administrerNomenclature'); return false;">
+				Administrer nomenclature
+			</a></td></tr>
+			<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('rechercheTypeFret'); return false;">
+				Paramétrer type de fret
+			</a></td></tr>
+			<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('rechercheTypeVehicule'); return false;">
+				Paramétrer type de véhicule
+			</a></td></tr>
+		
+		
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('rechercheNaviresExemptes'); return false;">
+					Paramétrer navires exemptés
+				</a></td></tr>
+			
+		
+		
+			<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('parametrerExtensionPJ'); return false;">
+				Paramétrer extensions pièces jointes
+			</a></td></tr>
+		
+		
+			<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('parametrerInfosAccueilAdmin'); return false;">
+				Paramétrer info accueil administrateur
+			</a></td></tr>
+		
+		
+			<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('parametrerLiens'); return false;">
+				Paramétrer liens
+			</a></td></tr>
+		
+
+		<tr>
+			<!-- insertion ligne vide -->
+			<td colspan="2">&nbsp;</td>
+		</tr>
+	
+
+	
+
+		<!-- Autres fonctions -->
+		
+			<tr>
+				<td class="titreGauche" colspan="2" align="center"><div class="rounded-tr">
+						<div class="rounded-br">
+							Autres fonctions
+						</div>
+					</div></td>
+			</tr>
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('occupationQuai'); return false;">
+					Occupation des quais
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('naviresAttendus'); return false;">
+					Navires attendus
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('naviresAQuai'); return false;">
+					Navires à quai
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('naviresAuDepart'); return false;">
+					Navires au départ
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('avisConsigneAutreFct'); return false;">
+					
+					
+					
+						Avis aux usagers et consignes
+					
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('rechercherNavire'); return false;">
+					Recherche de navire
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('rechercherNST2007'); return false;">
+					Recherche NST2007
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('rechercherMD'); return false;">
+					Rechercher matière dangereuse
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('rechercherPaysPort'); return false;">
+					Rechercher Pays Port
+				</a></td></tr>
+			
+			<tr>
+				<!-- insertion ligne vide -->
+				<td colspan="2">&nbsp;</td>
+			</tr>
+		
+
+	
+
+	
+		
+	
+	
+		
+	
+	
+
+	<!-- Statistiques -->
+	
+		<tr>
+			<td class="titreGauche" colspan="2" align="center"><div class="rounded-tr">
+					<div class="rounded-br">
+						Statistiques
+					</div>
+				</div></td>
+		</tr>
+		
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('codifierEscale'); return false;">
+					Codifier escale
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('creerAgglomerat'); return false;">
+					Créer fichier stat.
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('generationEnMasse'); return false;">
+					Génération en masse
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('rechercheAgglomeratsLocaux'); return false;">
+					Fichiers statistiques
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('tableauDeBord'); return false;">
+					Tableau de bord
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('gestionNST2007Locale'); return false;">
+					Gestion NST2007 locale
+				</a></td></tr>
+			
+			
+				<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('gestionNSTLocale'); return false;">
+					Gestion NST-R locale
+				</a></td></tr>
+			
+		
+		
+			<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('tdbNational'); return false;">
+				Tableau de bord national
+			</a></td></tr>
+		
+		
+			<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('exportDonneesBrutes'); return false;">
+				Export données brutes
+			</a></td></tr>
+		
+		<tr>
+			<!-- insertion ligne vide -->
+			<td colspan="2">&nbsp;</td>
+		</tr>
+	
+
+	<!-- Liens -->
+	<tr>
+		<td class="titreGauche" colspan="2" align="center"><div class="rounded-tr">
+				<div class="rounded-br">
+					Liens
+				</div>
+			</div></td>
+	</tr>
+	<tr><td align="right"><img src="E-SCALEPORT_fichiers/puce_menu_01.gif" alt=""></td><td align="left"><a href="#" onclick="validerMenu('afficherLiens'); return false;">
+		Liens
+	</a></td></tr>
+	<tr>
+		<!-- insertion ligne vide -->
+		<td colspan="2">&nbsp;</td>
+	</tr>
+
+</tbody></table>
+
+
+<script type="text/javascript">
+	function validerMenu(idEvent) {
+		try {
+			if (confirmationChangement()) {
+				if (getJeton()) {
+					var form = document.TelecommandeForm;
+					form.idEvent.value = idEvent;
+					form.submit();
+				}
+			}
+		} catch (exception) {
+			alert(exception.message + " dans la methode validerMenu");
+		}
+	}
+</script>
+
+	        	</td>
+	        	
+	        	
+				<td class="aeration" style="width:16px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>				
+
+				
+				<td class="corpsDePage" valign="top">
+        			
+					<a name="top"></a>
+ 
+					   
+					
+
+
+
+
+
+
+<script src="E-SCALEPORT_fichiers/menu.js" type="text/javascript"></script>
+
+
+
+<form name="MenuForm" method="post" action="/escaleport/iPostMenu.do?tokenGuard=RRJ8-HEOD-IZAP-WD3R-RAEO-C132-ME3R-OCH0">
+	<input name="idEvent" value="Accueil" id="MenuForm.idEvent" type="hidden">
+	<input name="actionPre" value="PreAccueil" id="MenuForm.actionPre" type="hidden">
+	<input name="largeur" value="1920" id="largeur" type="hidden">
+	<input name="numeroActionPre" value="0" id="numeroActionPre" type="hidden">
+<input name="tokenGuard" value="RRJ8-HEOD-IZAP-WD3R-RAEO-C132-ME3R-OCH0" type="hidden"></form>
+
+
+	
+
+
+	
+
+
+	
+
+
+
+
+	
+
+
+	
+
+
+
+<div id="menuprincipal">
+	<div class="rounded-bl">
+		<div class="rounded-tl">
+			<ul id="menu">
+				<li id="Accueil" class="menuOut"><a href="javascript:return%20false;" onclick="lancerMenu('Accueil'); return false;">
+					Accueil
+				</a></li>
+				
+					
+						<li id="Demande" class="menuOut"><a href="javascript:return%20false;" onclick="lancerMenu('Demande'); return false;">
+							Demandes
+						</a></li>
+					
+					
+						<li id="Mouvement"><a href="javascript:return%20false;" onclick="lancerMenu('Mouvement'); return false;">
+							Mouvements
+						</a></li>
+					
+					
+						<li id="Escale"><a href="javascript:return%20false;" onclick="lancerMenu('Escale'); return false;">
+							Escales
+						</a></li>
+					
+					
+						<li id="Exploitation"><a href="javascript:return%20false;" onclick="lancerMenu('Exploitation'); return false;">
+							Exploitation
+						</a></li>
+					
+				
+				
+					<li id="Administration" class="menuOut"><a href="javascript:return%20false;" onclick="lancerMenu('Administration'); return false;">
+						Administration
+					</a></li>
+				
+				
+					
+						<li id="AutresFonctions"><a href="javascript:return%20false;" onclick="lancerMenu('AutresFonctions'); return false;">
+							Autres fonctions
+						</a></li>
+					
+				
+				
+					<li id="Statistiques"><a href="javascript:return%20false;" onclick="lancerMenu('Statistiques'); return false;">
+						Statistiques
+					</a></li>
+				
+				<li id="Liens"><a href="javascript:return%20false;" onclick="lancerMenu('Liens'); return false;">
+					Liens
+				</a></li>
+
+			</ul>
+		</div>
+	</div>
+
+	
+		
+			<div style="display: none; position: absolute; top: 1.2em; left: 63px;" id="Demande_">
+				<ul class="sousMenu">
+					
+						<li><a href="#" onclick="validerMenu('rechercherDemande'); return false;">
+							Rechercher demande
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('creerDAPAQ'); return false;">
+							Créer DAPAQ
+						</a></li>
+					
+					
+						
+							<li class="sousMenuOut"><a href="#" onclick="validerMenu('importerAnnonces'); return false;">
+								Gérer POP
+							</a></li>
+						
+					
+				</ul>
+			</div>
+		
+
+		
+			<div style="display: none; position: absolute; top: 1.2em; left: 5px;" id="Mouvement_">
+				<ul class="sousMenu">
+					
+						<li><a href="#" onclick="validerMenu('rechercherMvt'); return false;">
+							Rechercher mouvement
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('creerMvtEntree'); return false;">
+							Navire local&nbsp;:&nbsp;  Créer mouvement entrée
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('registreEntreesSorties'); return false;">
+							Exporter registre E/S port 
+						</a></li>
+					
+					
+						
+							<li><a href="#" onclick="validerMenu('saisieRapideFerry'); return false;">
+								Saisie rapide mouvement ferry	
+							</a></li>
+						
+					
+				</ul>
+			</div>
+		
+
+		
+			<div style="display: none; position: absolute; top: 1.2em; left: 5px;" id="Escale_">
+				<ul class="sousMenu">
+					
+						<li><a href="#" onclick="validerMenu('rechercherDossierEscale'); return false;">
+							Rechercher dossier escale
+						</a></li>
+					
+				</ul>
+			</div>
+		
+
+		
+			<div style="display: none; position: absolute; top: 1.2em; left: 5px;" id="Exploitation_">
+				<ul class="sousMenu">
+					
+						<li><a href="#" onclick="validerMenu('rechercherAvisConsignes'); return false;">
+							Gérer avis aux usagers et consignes
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('exploiterPAQ'); return false;">
+							Exploitation des postes à quai
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('rechercherContact'); return false;">
+							Gérer contacts
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('rechercherJournalMessage'); return false;">
+							Visualiser journaux
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('naviresBannis'); return false;">
+							Navires bannis
+						</a></li>
+					
+					
+						
+							<li><a href="#" onclick="validerMenu('rechercherCapitaine'); return false;">
+								Gérer Capitaines Ferries
+							</a></li>
+						
+					
+				</ul>
+			</div>
+		
+		
+			<div style="display: none; position: absolute; top: 1.2em; left: 5px;" id="AutresFonctions_">
+				<ul class="sousMenu">
+					
+						<li><a href="#" onclick="validerMenu('occupationQuai'); return false;">
+							Occupation des quais
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('naviresAttendus'); return false;">
+							Navires attendus
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('naviresAQuai'); return false;">
+							Navires à quai
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('naviresAuDepart'); return false;">
+							Navires au départ
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('avisConsigneAutreFct'); return false;">
+							
+							
+							
+								Avis aux usagers et consignes
+							
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('rechercherNavire'); return false;">
+							Rechercher navire
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('rechercherNST2007'); return false;">
+							Rechercher NST2007
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('rechercherMD'); return false;">
+							Rechercher une matière dangereuse
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('rechercherPaysPort'); return false;">
+							Rechercher Pays Port
+						</a></li>
+					
+				</ul>
+			</div>
+		
+	
+
+	
+		<div style="display: none; position: absolute; top: 1.2em; left: 5px;" id="Statistiques_">
+			<ul class="sousMenu">
+				
+					
+						<li><a href="#" onclick="validerMenu('codifierEscale'); return false;">
+							Codifier escale
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('creerAgglomerat'); return false;">
+							Créer fichier stat.
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('generationEnMasse'); return false;">
+							Génération en masse
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('rechercheAgglomeratsLocaux'); return false;">
+							Fichiers statistiques
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('tableauDeBord'); return false;">
+							Tableau de bord
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('gestionNST2007Locale'); return false;">
+							Gestion NST2007 Locale
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('gestionNSTLocale'); return false;">
+							Gestion NST Locale
+						</a></li>
+					
+				
+				
+					<li><a href="#" onclick="validerMenu('tdbNational'); return false;">
+						Tableau de bord national
+					</a></li>
+				
+				
+					<li><a href="#" onclick="validerMenu('exportDonneesBrutes'); return false;">
+						Export données brutes
+					</a></li>
+				
+			</ul>
+		</div>
+	
+
+	
+		<div style="display: none; position: absolute; top: 1.2em; left: 397px;" id="Administration_">
+			<ul class="sousMenu">
+				
+					<li><a href="#" onclick="validerMenu('administrerPorts'); return false;">
+						Administrer ports
+					</a></li>
+				
+				
+					<li class="sousMenuOut"><a href="#" onclick="validerMenu('administrerEnvoisTIMAD'); return false;">
+						Administrer les envois vers TIMAD
+					</a></li>
+				
+				
+					<li><a href="#" onclick="validerMenu('importerLloyds'); return false;">
+						Importer navires Lloyds
+					</a></li>
+				
+				
+					<li><a href="#" onclick="validerMenu('traitementDonneesPersonnelles'); return false;">
+						Traitement des données personnelles
+					</a></li>
+				
+				
+					<li><a href="#" onclick="validerMenu('importerReferentiel'); return false;">
+						Importer référentiel
+					</a></li>
+				
+				
+					
+						<li><a href="#" onclick="validerMenu('parametrerPort'); return false;">
+							Paramétrer port
+						</a></li>
+					
+				
+				
+					<li><a href="#" onclick="validerMenu('gererCodes'); return false;">
+						Gérer tables de code
+					</a></li>
+				
+				
+					<li><a href="#" onclick="validerMenu('gererProfils'); return false;">
+						Gérer profils
+					</a></li>
+				
+				
+					
+						<li><a href="#" onclick="validerMenu('parametrerEcran'); return false;">
+							Paramétrer écrans
+						</a></li>
+					
+					
+						<li><a href="#" onclick="validerMenu('parametrerPop'); return false;">
+							Paramétrer POP
+						</a></li>
+					
+				
+				
+				
+				
+				
+				
+				
+				
+					<li><a href="#" onclick="validerMenu('administrerNomenclature'); return false;">
+						Administrer nomenclature
+					</a></li>
+					<li><a href="#" onclick="validerMenu('rechercheTypeFret'); return false;">
+						Paramétrer type de fret
+					</a></li>
+					<li class="sousMenuOut"><a href="#" onclick="validerMenu('rechercheTypeVehicule'); return false;">
+						Paramétrer type de véhicule
+					</a></li>
+				
+				
+					
+						<li><a href="#" onclick="validerMenu('rechercheNaviresExemptes'); return false;">
+							Paramétrer navires exemptés
+						</a></li>
+					
+				
+				
+					<li><a href="#" onclick="validerMenu('parametrerExtensionPJ'); return false;">
+						Paramétrer extensions pièces jointes
+					</a></li>
+				
+				
+					<li><a href="#" onclick="validerMenu('parametrerInfosAccueilAdmin'); return false;">
+						Paramétrer info accueil administrateur
+					</a></li>
+				
+				
+					<li><a href="#" onclick="validerMenu('parametrerLiens'); return false;">
+						Paramétrer liens
+					</a></li>
+				
+
+			</ul>
+		</div>
+	
+</div>
+
+
+				
+            		
+            		<table class="entete" cellspacing="0" cellpadding="0" width="100%" border="0">
+            			<tbody><tr><td colspan="2">&nbsp;</td></tr>
+                		<tr> 
+                			<td align="left" valign="top">
+								<form name="EnteteForm" method="post" action="/escaleport/iPostEntete.do?tokenGuard=RRJ8-HEOD-IZAP-WD3R-RAEO-C132-ME3R-OCH0">
+								    <input name="actionPre" value="PreAccueil" id="EnteteForm.actionPre" type="hidden">   
+								    <input name="idEvent" value="" id="EnteteForm.idEvent" type="hidden">   
+								    <input id="jeton" name="jeton" value="true" type="hidden">
+							  	<input name="tokenGuard" value="RRJ8-HEOD-IZAP-WD3R-RAEO-C132-ME3R-OCH0" type="hidden"></form>
+								
+								<div class="barreProgression"></div>
+							</td>        						
+                		</tr>
+					
+                		<tr>
+                			<td colspan="2" class="version" align="right">
+                				v4.0.3 INTEGRATION	
+                			</td>
+                		</tr>
+            		</tbody></table>        
+
+
+<script type="text/javascript">
+
+function initBody() {
+	try {		
+	
+	} catch (exception) { 
+		alert(exception.message + " dans la methode initBody");
+	}
+}
+
+function valider(idEvent) {
+	try {
+		if(getJeton()) {
+			var form = document.AccueilForm;
+			form.idEvent.value = idEvent;
+			form.submit();	
+		}
+
+	} catch (exception) { 
+		alert(exception.message + " dans la methode valider");
+	}
+}
+
+function validerEntree() {
+	valider('enregistrer');
+}
+
+function agirSurAvisConsigne(idAvisConsigne, action) {
+	try {
+		var form = document.AccueilForm;
+		form.idAvisConsigne.value = idAvisConsigne;
+		valider(action);
+	} catch (exception) { 
+		alert(exception.message + " dans la méthode agirSurAvisConsignes");
+	}
+}
+function ouvrirPieceJointe(indice,estAutoriseLecture) {
+	if(estAutoriseLecture != '1'){
+		alert("Vous n'êtes pas autorisé à consulter la pièce jointe");
+	}
+	else{
+		try {
+			var idAction = getIdAction();
+			var url = 'PostAccueil.do?idEvent=consulterPieceJointe&indice=' + indice + '&idAction=' + idAction + getTokenGuard();
+			window.open(url);
+		} catch (exception) { 
+			alert(exception.message + " dans la methode ouvrirPieceJointe");
+		}
+	}
+}
+
+function supprimerAvisConsigne(idAvisConsigne) {
+	try {
+		if (confirmer('Êtes-vous sûr de vouloir supprimer cet élément ?')) {
+			agirSurAvisConsigne(idAvisConsigne, 'supprimer');
+		}
+	} catch (exception) { 
+		alert(exception.message + " dans la methode supprimer");
+	}
+}
+
+
+function ouvrirUrl(url) {
+	try {
+		if(!url.match(/^http:\/\//)) {
+			url = "http://" + url;
+		}
+		window.open(url);
+	} catch (exception) { 
+		alert(exception.message + " dans la methode ouvrirUrl");
+	}	
+		
+}
+
+</script>
+<form name="AccueilForm" method="post" action="/escaleport/PostAccueil.do?tokenGuard=RRJ8-HEOD-IZAP-WD3R-RAEO-C132-ME3R-OCH0">
+<input name="idEvent" value="" id="idEvent" type="hidden">
+<input name="idTri" value="dateDebut" id="idTri" type="hidden">
+<input name="sensTri" value="DESC" id="sensTri" type="hidden">
+<input name="numPage" value="1" id="numPage" type="hidden">
+<input name="idAvisConsigne" value="" id="idAvisConsigne" type="hidden">
+
+<!--Titre de page -->
+<h1>Accueil</h1>
+
+
+
+
+
+
+
+<script type="text/javascript">
+function plierDeplier() {
+	try {
+		var bouton	= document.getElementById('boutonPlierDeplier');
+		var divWarn	= document.getElementById('warnings');
+		
+		if (divWarn.style.visibility == "hidden") {
+			divWarn.style.visibility = "visible";
+			divWarn.style.position = "";
+			if (estMSIE()) {
+				divWarn.style.display = "inline-block";
+			}
+			bouton.src = "images/boutons/plier.gif";
+		} else {
+			divWarn.style.visibility = "hidden";
+			divWarn.style.position = "absolute";		
+			if (estMSIE()) {
+				divWarn.style.display = "none";			
+			}
+			bouton.src = "images/boutons/deplier.gif";			
+		}
+	} catch (exception) {
+		alert(exception.message + " dans la methode plierDeplier");
+	}
+}	
+</script>
+
+<div class="anomalies">
+	<div class="erreurs">
+		  
+	</div>
+	<div class="warning">
+			
+	</div>
+</div>
+
+		
+
+
+
+
+
+
+
+
+
+<br><table id="tableResultatsInfosAccueilAdminEntete" cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="titreParametres">Informations</td><td class="titreParametresFin">&nbsp;</td></tr></tbody></table><table style="border:1px solid #005FB8;border-collapse:collapse;" class="tableauResultats" id="tableResultatsInfosAccueilAdmin" width="98%">
+    <colgroup>
+		
+		<col width="35%">
+		<col width="20%">
+		<col width="30%">
+	
+	</colgroup>
+	
+	
+	<tbody><tr>
+		
+		<th class="titreColonne txtCenter">Objet</th>
+		<th class="titreColonne txtCenter">Fichier</th>
+		<th class="titreColonne txtCenter">Lien</th>
+		
+	</tr>
+	
+
+	
+			
+				
+				
+					
+				
+					<tr class=" itemImpair">			
+					<td>
+						PND LIEN SUR LE SITE DU MINISTERE - PERMET TELECHARGEMENT MODELES FAL5 ET FAL6
+					</td>
+					<td><a href="#" onclick="ouvrirPieceJointe('LDssKsQMDcHd15L3Bw6G','1'); return false;">
+							fic contient liens site.pdf
+					</a></td>
+					<td><a href="#" onclick="ouvrirUrl('https://www.ecologique-solidaire.gouv.fr/guichet-unique-portuaire')">
+							https://www.ecologique-solidaire.gouv.fr/guichet-unique-portuaire
+						</a>
+					</td>
+					
+				</tr>
+			
+	
+
+</tbody></table>
+
+
+
+
+<br><table id="tableChangerPortEntete" cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="titreParametres">Connexion</td><td class="titreParametresFin">&nbsp;</td></tr></tbody></table><table style="border:1px solid #005FB8;border-collapse:collapse;" class="tableauResultats" id="tableChangerPort" width="98%">
+    <colgroup>
+	  <col width="20%">	
+	  <col width="80%">	    
+    </colgroup>
+	<tbody><tr>
+		<th>
+			Port&nbsp;<span class="champObligatoire">*</span>&nbsp;:
+		</th>
+		<td>
+	  		<select name="idPortLocode" onchange="activerChangement(event)" id="idPortLocode" style=""><option value="">...</option>
+				<option value="6995">Barneville Carteret</option>
+<option value="412">Boulogne-sur-Mer</option>
+<option value="417" selected="selected">Caen</option>
+<option value="420">Calais</option>
+<option value="415">Cannes</option>
+<option value="416">Cherbourg</option>
+<option value="419">Concarneau</option>
+<option value="6877">Dielette</option>
+<option value="423">Dieppe</option>
+<option value="424">Douarnenez</option>
+<option value="425">Fecamp (Fécamp)</option>
+<option value="426">Granville</option>
+<option value="441">Le Treport (Le Tréport)</option>
+<option value="440">Les Sables-d'Olonne (Les Sables d'Olonne)</option>
+<option value="435">Lezardrieux (Lézardrieux)</option>
+<option value="6915">Longoni</option>
+<option value="445">Nice</option>
+<option value="450">Pontrieux</option>
+<option value="1085">Port Réunion (ex Pointe-des-Galets)</option>
+<option value="466">Quimper</option>
+<option value="454">Rochefort</option>
+<option value="456">Roscoff</option>
+<option value="2117">Saint Pierre (975)</option>
+<option value="458">St Brieuc</option>
+<option value="464">Tonnay-Charente (Tonnay Charente)</option>
+<option value="465">Treguier (Tréguier)</option></select>
+		</td>
+	</tr>
+</tbody></table>
+<table cellspacing="5" cellpadding="0" border="0"><tbody><tr><td>
+	<a href="#" class="boutons" onclick="valider('enregistrer'); return false;" id="btnChangerPort"><img src="E-SCALEPORT_fichiers/valider.gif" alt="">Valider</a>		    
+</td></tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+<table cellspacing="5" cellpadding="0" border="0"><tbody><tr><td>
+	<a href="#" class="boutons" onclick="valider('afficherAvisConsigne'); return false;" id="btnavisConsigne"><img src="E-SCALEPORT_fichiers/valider.gif" alt="">Rechercher avis aux usagers et consignes</a>		    
+</td></tr></tbody></table>
+
+
+
+
+
+<input name="tokenGuard" value="RRJ8-HEOD-IZAP-WD3R-RAEO-C132-ME3R-OCH0" type="hidden"></form>
+
+
+
+
+
+		
+		<br>      	
+			<table border="0">
+				<tbody><tr>
+					<td class="note">
+						<span class="champObligatoire">*</span> : champ obligatoire
+					</td>
+				 </tr>
+			 </tbody></table>
+		 
+
+
+
+
+
+
+	
+
+				<br>
+				
+				<table cellspacing="0" cellpadding="0" width="100%" border="0">
+					<tbody><tr class="basDePage">
+						<td colspan="2">&nbsp;</td>
+			            <td width="100%">
+							<!-- Bas de page : signature -->
+				            <table cellspacing="0" cellpadding="0" width="100%" border="0">
+		        		        <tbody><tr>
+				                    <td class="footer"> 
+				                    	<ul>
+											<li>
+												7 août 2018 16:36:06
+											</li>
+											
+											<li>
+												<a href="https://escaleport-test.csam.e2.rie.gouv.fr/escaleport/aide.html" target="_blank" title="Aide générale">
+													Aide générale
+												</a>
+											</li>
+											
+											
+											<li>
+												<a href="mailto:dsi-hebergement@developpement-durable.gouv.fr?subject=Sujet%20%C3%A0%20d%C3%A9finir&amp;body=Contenu%20%C3%A0%20d%C3%A9finir" title="Message à l'éditeur">
+													Message à l'éditeur
+												</a>
+											</li>
+											
+											<li>
+												<a target="_blank" href="https://www.ecologique-solidaire.gouv.fr/guichet-unique-portuaire">
+													En savoir plus
+												</a>
+											</li>
+											<li>
+												Site optimisé pour Mozilla Firefox© ESR 
+											</li>
+										</ul> 
+									</td>
+		                		</tr>
+		        		    </tbody></table>
+				            <table cellspacing="0" cellpadding="0" width="100%" border="0">
+		        		        <tbody><tr> 
+		                		    <td class="logoBasDePage" align="center">&nbsp;</td>
+		        		        </tr>
+		        		    </tbody></table>
+		        		</td>
+		        	</tr>
+				</tbody></table>
+			</td>
+		</tr>
+	</tbody></table>
+	
+	<script src="E-SCALEPORT_fichiers/JavaScriptServlet.htm"></script>
+
+
+
+</body></html>

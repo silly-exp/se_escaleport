@@ -1,0 +1,25 @@
+/*******************************  DEV ******************************************************/
+@media screen {
+	.titreGauche {
+		color:white;
+		background:#005500;
+		font-size:1.0em;
+		font-weight:bold;
+		line-height:auto;
+		margin:0px;
+		padding:0px;
+		text-align:center;
+	}
+}
+
+div#menuprincipal {
+	margin: 0px;
+	background:#005500;
+	margin-bottom:1.5em;
+	height:auto;
+	position: relative; /*** IE6 needs this to display the div ***/  
+}
+
+.sousMenu {
+	background:#005500;
+}

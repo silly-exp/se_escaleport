@@ -1,0 +1,51 @@
+Notes pour le suivi du dev des tests Selenium.
+==============================================
+
+Organisation des codes?
+
+Remarques techniques:
+- si on fait juste un clic sur le lien "rechercher une escale" un problème d'affichage apparaît le code hidden semble correct mais pas correctement interpré par FF? En plus on ne peut rien faire parce qu'on a le message "Requête en cours de traitement".
+
+- Si on accède à une page https manuellement on a un problème de certificat autosigné mais il semble que je ne peux pas ajouter d'exception de sécurité qd FF est lancé avec Se.
+Ce projet montre comment déclarer les certificats: https://github.com/JeNeSuisPasDave/Selenium-and-TLS
+- Par contre lors que l'exécution de Se il n'y a pas de problème.
+Le problème est donc limité aux cas où Se plante et que je veux analyser manuellement ce qui s'est passé.
+
+
+
+Ecrire une cheat sheet:
+-----------------------
+- récupérer l'élément
+- Lire une valeur dans la page ??
+- suivre un lien
+- attendre que la page soit chargée
+- remplir un formulaire
+	texte
+	liste
+	date (par le composant js) => sans doute pas prioritaire.
+- Gérer les certificats autosignés en https
+
+
+voir aussi:
+-----------
+http://robotframework.org
+https://github.com/robotframework/SeleniumLibrary
+	permet de décrire des tests sous une forme plus proche du langage naturel...
+
+	
+Le 07/08/2018
+finalement je ne reproduit pas le problème avec le https.
+=> je me concentre sur la saisie et le contrôle.
+
+https://seleniumhq.github.io/docs/wd.html#browser_launching_and_manipulation
+
+08/08/2018
+La fonction click() n'attend pas le rechargement de la page (parce que cela ne provoque pas nécessairement un rechargement).
+Si le test pour déterminer que la page est chargée porte sur un élément qui est dans la page précédente, il sera faut.
+Le lien suivant explique comment utiliser le fait que l'élément de la page précédente est passé dans un état incohérent avant 
+de contrôler que le nouveau est présent.
+https://blog.codeship.com/get-selenium-to-wait-for-page-load/
+=> complètement vital.
+
+
+Il est possible d'exécuter du js avec la fonction execute_script()
