@@ -1,0 +1,13 @@
+//fieldId	searchBy	searchValue	inputType	commentaire
+diffusionPublique	id	diffusionPublique	text	case à cocher
+nomDuNavire	id	nomNavire	text	
+pavillon	id	idcPavillon	select	
+mmsi	id	mmsi	text	
+amarteur	id	armateur	text	
+indicatifRadio	id	indicatifRadio	text	
+dateArriveePrevue	id	datePrevueArrivee	text	
+heureArriveePrevue	id	heurePrevueArrivee	text	
+Nvoyage	id	numeroVoyage	text	
+objetDeLEscale	id	idcObjetEscale	select	
+consignataireSuivant	id	idSocieteConsignataireSuivant	select	
+submit	partial link text	Compléter demande	link	

@@ -1,0 +1,13 @@
+//fieldId	searchBy	searchValue	inputType	commentaire
+nomNavire	id	nomNavire	text	
+numeroImmat	id	numeroImmat	text	
+numeroOMI	id	numeroOMI	text	
+idcTypeNavire	id	idcTypeNavire	select	
+numDemande	id	numDemande	text	
+idcEtatDemande	id	idcEtatDemande	select	
+idcMouvement	id	idcMouvement	select	
+numEscale	id	numEscale	text	
+idSocieteConsignataire	id	idSocieteConsignataire	select	
+dateDebut	id	dateDebut	text	
+dateFin	id	dateFin	text	
+submit	xpath	//td[@class='corpsDePage']//*[not (name()='menuprincipal')]//a[normalize-space()='Rechercher']	link	

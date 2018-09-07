@@ -68,7 +68,7 @@ class escaleportDriver(webdriver.Firefox):
 			return False
 
 		
-	def cliqueLien(self, label, by="partial link text"):
+	def cliqueLien(self, label, by="partial link text", startElem = None):
 		"""clique sur le lien contenant le libelle.
 		Ce lien doit provoquer le rechargement de la page, cette fonction n'est pas 
 		adaptées dans le cas contraire car la condition qui détermine la fin du 
@@ -78,7 +78,9 @@ class escaleportDriver(webdriver.Firefox):
 		by : valeur de la classe By qui indique la signification du libelle
 			par défaut le libellé est considéré comme le texte du lien."""
 		print("[{}][{}]".format(label, by))
-		link = self.find_element(by, label)
+		if startElem is None:
+			startElem = self
+		link = startElem.find_element(by, label)
 		link.click()
 		self.waitTokenGuardOnNewPage(link)
 			
@@ -142,6 +144,7 @@ class escaleportDriver(webdriver.Firefox):
 		"""TODO idéalement se serait vraiment cool de pouvoir désigner le formulaire avec seulement un copier/coller du fil d'Ariane"""
 		"""FIXME: le chargement des csv ne devrait pas se trouver ici mais dans un module de gestion des configs à écrire"""
 		"""TODO:  pour gérer correctement les listes dépendantes il faudra trouver un système qui attend que la liste se mette à jour."""
+		"""FIXME: comment permettre de choisir entre deux validation possible (exemple DAPAQ flash ou compléter)"""
 		# Détermination de la page sur laquelle on se trouve.
 		# En première approche on se base sur le nom de la balise form.
 		# Il y a toujours plusieurs formulaire qui ne nous intéressent pas on est obligé de faire un peu de tri
@@ -188,4 +191,25 @@ class escaleportDriver(webdriver.Firefox):
 			self.cliqueLien(label=formFields['submit']['searchValue'], by=formFields['submit']['searchBy'])
 		else:
 			raise ValueError("Dans le fichier {}, l'inputType {} n'est pas définit pour le champ de soumission du formulaire.".format(formDescPath, formFields['submit']['inputType']))
+	
+	def resultContent(self):
+		""" retourne le tableau de résultat pour analyse et permettre de trouver celui qui nous intéresse."""
+		"""FIXME: à faire"""
+		pass
+		
+	def clickResultAction(self, resultNbr=0, actionLabel=None):
+		""" Dans un tableau de résultats sélectionne l'action actionLabel du résultat resultNbr.
+			Les numéros des résultats commencent à 0. Le premier est en haut le dernier en bas.
+			si resultNbr est omis, le premier résultat est sélectionné.
+			Si actionLabel est omis on clique sur la ligne du tableau."""
+			
+		# cliquer sur le bouton action de la ligne resultNbr (commence à 0)
+		self.find_element_by_id("menu{}".format(resultNbr)).find_element_by_xpath("./..").click()
+		#time.sleep(1)
+		# cliquer sur l'action Voulue
+		if actionLabel is None:
+			# TODO
+			raise NotImplementedError("Je ne sais pas encore vraiment cliquer sur la ligne du résultat...")
+		else:
+			self.cliqueLien(actionLabel, startElem = self.find_element_by_id("menu{}".format(resultNbr)))
 			
