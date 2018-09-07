@@ -1,0 +1,4 @@
+//fieldId	searchBy	searchValue	inputType
+identifiant 	name	uid	text
+motDePasse	name	pwd	text
+submit	id	btnOK	link

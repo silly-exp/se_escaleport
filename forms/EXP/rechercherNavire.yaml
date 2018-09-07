@@ -1,0 +1,20 @@
+formId: rechercherNavire
+fields:
+	- fieldId: ReferentielNavire
+	  tagType: id
+	  tagValue: idcReferentielNavire
+	  inputType: select
+	
+	- fieldId: nomNavire
+	  tagType: id
+	  tagValue: nomNavire
+	  inputType: text
+	
+	- fieldId: numeroOMI
+	  tagType: id
+	  tagValue: numeroOMI
+	  inputType: text
+
+#FIXME: honetement je ne sais pas encore comment utiliser cette information
+#       il ne faudrait pas qu'il y apparaisse de Selenium ni de fonction de l'API Escaleport.
+submit:	cliqueLien(self.browser, "//td[@class='corpsDePage']//*[not (name()='menuprincipal')]//a[normalize-space()='Rechercher']", By.XPATH)

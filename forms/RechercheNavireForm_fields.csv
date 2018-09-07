@@ -1,0 +1,5 @@
+//fieldId	tagType	tagValue	inputType
+ReferentielNavire	id	idcReferentielNavire	select
+nomNavire	id	nomNavire	text
+numeroOMI	id	numeroOMI	text
+submit	xpath	//td[@class='corpsDePage']//*[not (name()='menuprincipal')]//a[normalize-space()='Rechercher']	link

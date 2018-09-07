@@ -1,0 +1,3 @@
+//fieldId	searchBy	searchValue	inputType
+port	id	idPortLocode	select
+submit	partial link text	Valider	link

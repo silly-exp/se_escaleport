@@ -1,0 +1,7 @@
+path: "Rechercher navire" # ce qui se trouve dans le fil d'Ariane. pas loin d'être l'identifiant de la page.
+fields:
+	ReferentielNavire, "id", "idcReferentielNavire", "select"
+	nomNavire,         "id", "nomNavire"           , "text"
+	numeroOMI,         "id", "numeroOMI"           , "text"
+submit:
+	cliqueLien(self.browser, "//td[@class='corpsDePage']//*[not (name()='menuprincipal')]//a[normalize-space()='Rechercher']", By.XPATH)
