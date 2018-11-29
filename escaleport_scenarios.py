@@ -31,7 +31,13 @@ class EscaleportTestCase(unittest.TestCase):
 		self.browser.fillForm({'port':"Caen"})
 
 
-	def _testCreerDAPAQ(self):
+	def testCreerDAPAQ(self):
+		# s'identifier sur cerbere
+		self.browser.fillForm({"identifiant":"capg141", "motDePasse":"14"}, "cerbereLogin")
+		# Sélection du port de Caen : inutile si on est en capg141
+		#self.browser.fillForm({'port':"Caen"})
+		self.browser.fillForm({'idPortLocode':"Caen"})
+
 		# Créer une demande
 		self.browser.cliqueMenu("Créer DAPAQ")
 		#   Chercher un navire
@@ -39,11 +45,11 @@ class EscaleportTestCase(unittest.TestCase):
 		#     Sélectionner un résultat.
 		self.browser.clickResultAction(0,"Sélectionner")
 		#     Compléter la DAPAQFlash
-		self.browser.fillForm({'dateArriveePrevue':'10102018', 'heureArriveePrevue':'2000', 'objetDeLEscale':'Commerciale'})
+		self.browser.fillForm({'datePrevueArrivee':'10102018', 'heurePrevueArrivee':'2000', 'idcObjetEscale':'Commerciale'})
 #		self.rechercherNavireSelect()
 #		self.DAPAQFlash()
 
-	def testRechercherDemande(self):
+	def _testRechercherDemande(self):
 		self.browser.fillForm({"identifiant":"capg141", "motDePasse":"14"}, "cerbereLogin")
 		self.browser.cliqueMenu("Rechercher demande")
 		# formulaire de recherche

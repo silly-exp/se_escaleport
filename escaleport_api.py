@@ -118,8 +118,32 @@ class escaleportDriver(webdriver.Firefox):
 		pwdField.submit() # FIXME c'est un peu louche parce que c'est le formulaire que je veux soumettre...
 		self.waitTokenGuardOnNewPage()
 		
+	def getFormFields(self):
+		formElem = self.find_element(By.XPATH, "//td[@class='corpsDePage']/form[@name!='MenuForm']")
+		if formElem is None:
+			formElem = self.find_element(By.XPATH, "//td[@class='ongletMain']/div")
 		
-	def fillForm(self, params, formId = None):
+		formFields = {}
+		fieldsElems = formElem.find_elements(By.XPATH, "//input | //select | //textarea")
+		for fieldElem in fieldsElems:
+			if (not fieldElem.is_displayed()):
+				continue
+			inputType=""
+			if fieldElem.tag_name == 'textarea':
+				inputType = 'text'
+			elif fieldElem.tag_name == 'select':
+				inputType = 'select'
+			else:
+				inputType = fieldElem.get_attribute("type")
+			print('------{}:{}:{}'.format(fieldElem.tag_name, fieldElem.get_attribute("name"), inputType))
+			formFields[fieldElem.get_attribute("name")]={'searchBy':'name', 'searchValue':fieldElem.get_attribute("name"), 'inputType':inputType}
+			
+		return formFields
+		
+			
+		
+	
+	def fillForm(self, params, formId = None, submitLink = None):
 		""" Remplir le formulaire d'identifiant formId avec les paramètres params.
 		Le formulaire doit être décrit dans le fichier ./forms/formId.yaml.
 		Le format excel c'est pratique mais pas versionnable et il faut excel...
@@ -144,24 +168,30 @@ class escaleportDriver(webdriver.Firefox):
 		"""TODO idéalement se serait vraiment cool de pouvoir désigner le formulaire avec seulement un copier/coller du fil d'Ariane"""
 		"""FIXME: le chargement des csv ne devrait pas se trouver ici mais dans un module de gestion des configs à écrire"""
 		"""TODO:  pour gérer correctement les listes dépendantes il faudra trouver un système qui attend que la liste se mette à jour."""
-		"""FIXME: comment permettre de choisir entre deux validation possible (exemple DAPAQ flash ou compléter)"""
+		"""FIXME: comment permettre de choisir entre deux validations possibles (exemple DAPAQ flash ou compléter)"""
+		"""TODO: on doit pas être loin de pouvoir générer la liste des champs du formulaire automatiquement."""
+		"""TODO: faire en sorte que ça fonctionne aussi avec les obglets de la demande."""
 		# Détermination de la page sur laquelle on se trouve.
 		# En première approche on se base sur le nom de la balise form.
 		# Il y a toujours plusieurs formulaire qui ne nous intéressent pas on est obligé de faire un peu de tri
-		if formId is None:
+		userFormId = formId
+		if userFormId is None:
 			formElem = self.find_element(By.XPATH, "//td[@class='corpsDePage']/form[@name!='MenuForm']")
 			formId = formElem.get_attribute("name")
 		print("formId=[{}]".format(formId))
 		
-		# Récupérer la définition du formulaire
-		formDescPath = 'forms/{}_fields.csv'.format(formId)
 		formFields = dict()
-		with open(formDescPath, 'r') as formDescFile:
-			reader = csv.reader(formDescFile, delimiter="\t")	
-			for row in reader:
-				if (row[0].strip())[:2]=='//':
-					continue
-				formFields[row[0].strip()]={'searchBy':row[1].strip(), 'searchValue':row[2].strip(), 'inputType':row[3].strip()}
+		# Récupérer la définition du formulaire
+		if userFormId is None:
+			formFields = self.getFormFields()
+		else:
+			formDescPath = 'forms/{}_fields.csv'.format(formId)
+			with open(formDescPath, 'r') as formDescFile:
+				reader = csv.reader(formDescFile, delimiter="\t")	
+				for row in reader:
+					if (row[0].strip())[:2]=='//':
+						continue
+					formFields[row[0].strip()]={'searchBy':row[1].strip(), 'searchValue':row[2].strip(), 'inputType':row[3].strip()}
 		
 		# valider les id des parametres
 		for fieldId, fieldValue in params.items():
@@ -181,16 +211,20 @@ class escaleportDriver(webdriver.Firefox):
 			elif fieldDesc['inputType']=='select':
 				Select(field_elem).select_by_visible_text(params[fieldId])
 			else:
-				raise ValueError("Dans le fichier {}, pour le champ {}, l'inputType {} n'est pas connu.".format(formDescPath, fieldId, fieldDesc['inputType']))
+				raise ValueError("L'inputType {} du champ {} n'est pas géré.".format(fieldDesc['inputType'], fieldId))
 		
 		# soumission du formulaire
-		if 'submit' not in formFields.keys():
-			raise ValueError("Pas de champ submit définit dans le fichier {}: impossible de valider le formulaire.".format(formDescPath))
-		
-		if formFields['submit']['inputType']=='link':
-			self.cliqueLien(label=formFields['submit']['searchValue'], by=formFields['submit']['searchBy'])
-		else:
-			raise ValueError("Dans le fichier {}, l'inputType {} n'est pas définit pour le champ de soumission du formulaire.".format(formDescPath, formFields['submit']['inputType']))
+		if userFormId is None:
+			if submitLink is None:
+				raise ValueError("Pas de lien de soumission transmis pour le formulaire ".format(formId))
+			#FIXME: et si submitLink est là??
+		else: 
+			if 'submit' not in formFields.keys():
+				raise ValueError("Pas de champ submit définit dans le fichier {}: impossible de valider le formulaire.".format(formDescPath))
+			if formFields['submit']['inputType']=='link':
+				self.cliqueLien(label=formFields['submit']['searchValue'], by=formFields['submit']['searchBy'])
+			else:
+				raise ValueError("Dans le fichier {}, l'inputType {} n'est pas définit pour le champ de soumission du formulaire.".format(formDescPath, formFields['submit']['inputType']))
 	
 	def resultContent(self):
 		""" retourne le tableau de résultat pour analyse et permettre de trouver celui qui nous intéresse."""
