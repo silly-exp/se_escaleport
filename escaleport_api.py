@@ -66,10 +66,10 @@ class escaleportDriver(webdriver.Firefox):
 			print("pas de tokenGuard...")
 			print(e)
 			return False
-
 		
-	def cliqueLien(self, label, by="partial link text", startElem = None):
+	def cliqueLien(self, label, startElem=None):
 		"""clique sur le lien contenant le libelle.
+		Ce lien ne doit pas se trouver dans les menus (utiliser cliqueMenu pour cela).
 		Ce lien doit provoquer le rechargement de la page, cette fonction n'est pas 
 		adaptées dans le cas contraire car la condition qui détermine la fin du 
 		chargement ne sera pas correcte
@@ -77,10 +77,10 @@ class escaleportDriver(webdriver.Firefox):
 		libelle: le texte du lien à rechercher
 		by : valeur de la classe By qui indique la signification du libelle
 			par défaut le libellé est considéré comme le texte du lien."""
-		print("[{}][{}]".format(label, by))
-		if startElem is None:
-			startElem = self
-		link = startElem.find_element(by, label)
+		if startElem == None:	
+			link = self.find_element(By.XPATH, f"//td[@class='corpsDePage']/*[not (self::a[@name='top']) and not (self::form[@name='MenuForm']) and not (self::div[@id='menuprincipal']) and not (self::script) and not (self::table[@class='entete'])]//a[normalize-space()='{label}']")
+		else:
+			link = startElem.find_element(By.LINK_TEXT, label)
 		link.click()
 		self.waitTokenGuardOnNewPage(link)
 			
@@ -89,38 +89,43 @@ class escaleportDriver(webdriver.Firefox):
 		possible de les rechercher avec seulement leur texte. Cette fonction permet 
 		de cliquer sur une entrée du menu en utilisant par défaut le menu gauche.
 		FIXME: implémenter le menu haut."""
-		link = self.find_element(By.XPATH, "//table[@class='liensMenuGauche']//a[normalize-space()='{}']".format(label))
+		link = self.find_element(By.XPATH, f"//table[@class='liensMenuGauche']//a[normalize-space()='{label}']")
 		link.click()
 
 		#Accès par le menu haut (menu principal)
 	#	self.find_element(By.XPATH, "//div[@id='manuprincipal']//a[normalize-space()='{}']".format(terms)).click()
 		self.waitTokenGuardOnNewPage(link)
 
+	def cliqueAriane(self, label):
+		""" clique sur un lien du fil d'Ariane"""
+		link = self.find_element(By.XPATH, f"//table[@class='entete']//a[normalize-space()='{label}']")
+		link.click()
+		self.waitTokenGuardOnNewPage(link)
+		pass
+	
+	def cliqueOnglet(self, label):
+		""" clique sur un onglet des demandes"""
+		# TODO
+		pass
 		
 	def selectDansListe(self, listId, value):
 		"""sélectionne la valeur value dans la liste d'id idList"""
 		Select(self.find_element_by_id(listId)).select_by_visible_text(value)
 		
-	# Rempli et valide de formulaire de login de cerbère.
-	# Prérequis: 
-	#  o il faut se trouver sur la page Cerbère
-	# Param:
-	#  - Le nom du compte cerbère
-	#  - Le mot de passe du compte
-	# Retour:
-	#  Aucun. TODO: devrait gérer les problèmes de connexion...
-	#---------------------------------------------------------
-	def cerbereLogin(self, name, pwd):
+	def cerbereLogin(self, params):
+		""" saisie et valide le formulaire d'authentification cerbère.
+		Dans un premier temps on le traite à part, mais il pourrait être traité avec fillForm()"""
 		nameField = self.find_element_by_name('uid')
-		nameField.send_keys(name)
+		nameField.send_keys(params['uid'])
 		pwdField = self.find_element_by_name('pwd')
-		pwdField.send_keys(pwd)
+		pwdField.send_keys(params['pwd'])
 		pwdField.submit() # FIXME c'est un peu louche parce que c'est le formulaire que je veux soumettre...
 		self.waitTokenGuardOnNewPage()
 		
 	def getFormFields(self):
-		formElem = self.find_element(By.XPATH, "//td[@class='corpsDePage']/form[@name!='MenuForm']")
-		if formElem is None:
+		try:
+			formElem = self.find_element(By.XPATH, "//td[@class='corpsDePage']/form[@name!='MenuForm']")
+		except : #selenium.common.exceptions.NoSuchElementException:
 			formElem = self.find_element(By.XPATH, "//td[@class='ongletMain']/div")
 		
 		formFields = {}
@@ -139,92 +144,32 @@ class escaleportDriver(webdriver.Firefox):
 			formFields[fieldElem.get_attribute("name")]={'searchBy':'name', 'searchValue':fieldElem.get_attribute("name"), 'inputType':inputType}
 			
 		return formFields
-		
-			
-		
 	
-	def fillForm(self, params, formId = None, submitLink = None):
-		""" Remplir le formulaire d'identifiant formId avec les paramètres params.
-		Le formulaire doit être décrit dans le fichier ./forms/formId.yaml.
-		Le format excel c'est pratique mais pas versionnable et il faut excel...
-		Le format ods en version non zippée pourquoi pas, à étudier mais ajoute une dépendance et c'est qd un xml tres parasité. 
-		Le format CSV est assez cool mais il ne permet pas de stocker des données de nature différentes (ex: fil d'Ariane + fields + submit)
-		Les formats yaml ou json sont moins simple à écrire et oblige à copier le nom du champ à chaque fois...
-		Le yaml est plus compliqué que json et nécessite un module externe.
-		
-		=> csv ou json. Va pour le CSV. Il conviendra bien pour les fields.
-		
-		Le field dont l'Id est "submit" correspond à l'élément à cliquer pour valider le formulaire.
-		Les champs sont remplis dans l'ordre de leur définition dans le csv sauf le champ submit qui 
-		sera toujours utilisé à la fin (pour éviter les erreurs incompréhensibles). Cette histoire 
-		d'ordre de saisie sera utile lorsqu'on aura des listes qui dépendent d'autre champs"""
-		
-		""" Recommandation: par convention le nom des parametres servant à remplir le formulaire est le libellé du champ
-		traduit en camelCase et commençant par une minuscule. Cette règle n'est pas implémentée et elle
-		est uniquement destiné à ce que l'utilisteur s'y retrouve facilement."""
-		
-		"""FIXME voir comment faire pour valider les listes de valeurs modifiées en fonction d'autres valeurs saisies
-		   ou plus généralement comment valider des comportements qui interviennent avant la validation du formulaire."""
-		"""TODO idéalement se serait vraiment cool de pouvoir désigner le formulaire avec seulement un copier/coller du fil d'Ariane"""
-		"""FIXME: le chargement des csv ne devrait pas se trouver ici mais dans un module de gestion des configs à écrire"""
-		"""TODO:  pour gérer correctement les listes dépendantes il faudra trouver un système qui attend que la liste se mette à jour."""
-		"""FIXME: comment permettre de choisir entre deux validations possibles (exemple DAPAQ flash ou compléter)"""
-		"""TODO: on doit pas être loin de pouvoir générer la liste des champs du formulaire automatiquement."""
-		"""TODO: faire en sorte que ça fonctionne aussi avec les obglets de la demande."""
-		# Détermination de la page sur laquelle on se trouve.
-		# En première approche on se base sur le nom de la balise form.
-		# Il y a toujours plusieurs formulaire qui ne nous intéressent pas on est obligé de faire un peu de tri
-		userFormId = formId
-		if userFormId is None:
-			formElem = self.find_element(By.XPATH, "//td[@class='corpsDePage']/form[@name!='MenuForm']")
-			formId = formElem.get_attribute("name")
-		print("formId=[{}]".format(formId))
-		
-		formFields = dict()
-		# Récupérer la définition du formulaire
-		if userFormId is None:
-			formFields = self.getFormFields()
-		else:
-			formDescPath = 'forms/{}_fields.csv'.format(formId)
-			with open(formDescPath, 'r') as formDescFile:
-				reader = csv.reader(formDescFile, delimiter="\t")	
-				for row in reader:
-					if (row[0].strip())[:2]=='//':
-						continue
-					formFields[row[0].strip()]={'searchBy':row[1].strip(), 'searchValue':row[2].strip(), 'inputType':row[3].strip()}
+	def fillForm(self, params):
+		""" Remplir le formulaire de la page courante avec les paramètres params.
+		"""
+		# analyse de la page pour trouver les champs du formulaire
+		formFields = self.getFormFields()
+		#print(formFields)
 		
 		# valider les id des parametres
 		for fieldId, fieldValue in params.items():
 			if fieldId not in formFields.keys():
-				raise  ValueError("Le paramètre {} n'est pas défini dans le formulaire {}".format(fieldId, formId))
+				raise  ValueError(f"Le paramètre {fieldId} n'est pas défini dans le formulaire")
+
 		# remplir le formulaire.
 		for fieldId, fieldDesc in formFields.items():
-			if fieldId == 'submit':
-				# on valide le formulaire à la fin
-				continue
 			if fieldId not in params.keys():
 				# ce champ reste vide
 				continue
+			print(fieldId, fieldDesc)
 			field_elem = self.find_element(fieldDesc['searchBy'], fieldDesc['searchValue'])
 			if fieldDesc['inputType']=='text':
 				field_elem.send_keys(params[fieldId])
 			elif fieldDesc['inputType']=='select':
 				Select(field_elem).select_by_visible_text(params[fieldId])
 			else:
-				raise ValueError("L'inputType {} du champ {} n'est pas géré.".format(fieldDesc['inputType'], fieldId))
-		
-		# soumission du formulaire
-		if userFormId is None:
-			if submitLink is None:
-				raise ValueError("Pas de lien de soumission transmis pour le formulaire ".format(formId))
-			#FIXME: et si submitLink est là??
-		else: 
-			if 'submit' not in formFields.keys():
-				raise ValueError("Pas de champ submit définit dans le fichier {}: impossible de valider le formulaire.".format(formDescPath))
-			if formFields['submit']['inputType']=='link':
-				self.cliqueLien(label=formFields['submit']['searchValue'], by=formFields['submit']['searchBy'])
-			else:
-				raise ValueError("Dans le fichier {}, l'inputType {} n'est pas définit pour le champ de soumission du formulaire.".format(formDescPath, formFields['submit']['inputType']))
+				raise ValueError(f"L'inputType {fieldDesc['inputType']} du champ {fieldId} n'est pas géré.")
 	
 	def resultContent(self):
 		""" retourne le tableau de résultat pour analyse et permettre de trouver celui qui nous intéresse."""
@@ -238,12 +183,12 @@ class escaleportDriver(webdriver.Firefox):
 			Si actionLabel est omis on clique sur la ligne du tableau."""
 			
 		# cliquer sur le bouton action de la ligne resultNbr (commence à 0)
-		self.find_element_by_id("menu{}".format(resultNbr)).find_element_by_xpath("./..").click()
+		self.find_element_by_id(f"menu{resultNbr}").find_element_by_xpath("./..").click()
 		#time.sleep(1)
 		# cliquer sur l'action Voulue
 		if actionLabel is None:
 			# TODO
 			raise NotImplementedError("Je ne sais pas encore vraiment cliquer sur la ligne du résultat...")
 		else:
-			self.cliqueLien(actionLabel, startElem = self.find_element_by_id("menu{}".format(resultNbr)))
+			self.cliqueLien(actionLabel, startElem = self.find_element_by_id(f"menu{resultNbr}"))
 			
