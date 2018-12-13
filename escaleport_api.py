@@ -1,6 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+
 from selenium.webdriver.support.ui import WebDriverWait 
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -105,8 +108,13 @@ class escaleportDriver(webdriver.Firefox):
 	
 	def cliqueOnglet(self, label):
 		""" clique sur un onglet des demandes"""
-		# TODO
-		pass
+		elems = self.find_elements(By.CLASS_NAME, "ongletTextDis")
+		elems += self.find_elements(By.CLASS_NAME, "ongletTextEna")
+		for e in elems:
+			if e.text.strip() == label:
+				e.click()
+				self.waitTokenGuardOnNewPage(e)
+		raise Exception(f"Onglet {label} non trouvé.")
 		
 	def selectDansListe(self, listId, value):
 		"""sélectionne la valeur value dans la liste d'id idList"""
