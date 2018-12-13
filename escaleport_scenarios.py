@@ -31,7 +31,10 @@ class EscaleportTestCase(unittest.TestCase):
 		self.browser.fillForm({'port':"Caen"})
 
 
-	def testCreerDAPAQ(self):
+	def _testCreerDAPAQ(self):
+		""" Crée une DAPAQ à Caen pour le MARION DUFRESNE aujourd'hui
+			et saisit la FAL1.
+		"""
 		# s'identifier sur cerbere
 		self.browser.cerbereLogin({"uid":"pnd", "pwd":"1"})
 		# Sélection du port de Caen : inutile si on est en capg141
@@ -63,6 +66,9 @@ class EscaleportTestCase(unittest.TestCase):
 							   'presenceMD':'Oui',
 							   'niveauInspection':'Aucune inspection',
 							   'avarie':'Non'})
+		self.browser.cliqueLien('Enregistrer')
+		self.browser.cliqueOnglet('Postes et moyens')
+		self.browser.fillForm(...)
 		self.browser.cliqueLien('Enregistrer')
 
 
