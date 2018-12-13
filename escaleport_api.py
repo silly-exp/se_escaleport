@@ -165,7 +165,12 @@ class escaleportDriver(webdriver.Firefox):
 			print(fieldId, fieldDesc)
 			field_elem = self.find_element(fieldDesc['searchBy'], fieldDesc['searchValue'])
 			if fieldDesc['inputType']=='text':
+				field_elem.clear()
 				field_elem.send_keys(params[fieldId])
+				# Pour certains champs utilisant la validation/autocomplétion il est nécessaire d'envoyer des événements keyUp (ex: locode)
+				# Dans le cas contraire la liste des valeurs possibles n'est pas calculée et le contrôle pense que la valeur saisie n'a
+				# pas de correspandance dans la liste des codes.
+				ActionChains(self).key_down(Keys.CONTROL, field_elem).key_up(Keys.CONTROL, field_elem).pause(0.2).perform();
 			elif fieldDesc['inputType']=='select':
 				Select(field_elem).select_by_visible_text(params[fieldId])
 			else:
