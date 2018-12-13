@@ -72,15 +72,26 @@ class EscaleportTestCase(unittest.TestCase):
 		self.browser.cliqueLien('Enregistrer')
 
 
-	def _testRechercherDemande(self):
-		self.browser.fillForm({"identifiant":"capg141", "motDePasse":"14"}, "cerbereLogin")
+	def testRechercherDemande(self):
+		""" recherche les DAPAQ d'aujourd'hui
+			choisi la demande d'entrée du Marion Dufresne.
+		"""
+		# s'identifier sur cerbere
+		self.browser.cerbereLogin({"uid":"pnd", "pwd":"1"})
+		# Sélection du port de Caen : inutile si on est en capg141
+		#self.browser.fillForm({'port':"Caen"})
+		self.browser.fillForm({'idPortLocode':"Caen"})
+		self.browser.cliqueLien('Valider')
+
 		self.browser.cliqueMenu("Rechercher demande")
 		# formulaire de recherche
-		self.browser.fillForm({'dateDebut':"10102018",'dateFin':"11102018"})
+		#self.browser.fillForm({'dateDebut':"10102018",'dateFin':"11102018"})
+		self.browser.fillForm({'numDemande':"2018000745",'dateDebut':"",'dateFin':""})
+		self.browser.cliqueLien('Rechercher')
 		# consulter le premier résultat.
 		self.browser.clickResultAction(0,"Consulter demande")
 		
-		
+		self.browser.cliqueOnglet('Poste / Moyens')
 		
 		
 
