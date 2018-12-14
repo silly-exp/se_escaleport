@@ -47,8 +47,8 @@ class EscaleportTestCase(unittest.TestCase):
 		#   Chercher un navire
 		self.browser.fillForm({'nomNavire':"MARION DUFRESNE"})
 		self.browser.cliqueLien('Rechercher')
-		#     Sélectionner un résultat.
-		self.browser.clickResultAction(0,"Sélectionner")
+		#     Sélectionner le premier résultat.
+		self.browser.cliqueResultatAction(0,"Sélectionner")
 		#     Compléter la DAPAQFlash
 		self.browser.fillForm({'datePrevueArrivee':datetime.date.today().strftime("%d%m%Y"), 'heurePrevueArrivee':'1100', 'idcObjetEscale':'Commerciale'})
 		self.browser.cliqueLien('Compléter demande')
@@ -89,7 +89,7 @@ class EscaleportTestCase(unittest.TestCase):
 		self.browser.fillForm({'numDemande':"2018000745",'dateDebut':"",'dateFin':""})
 		self.browser.cliqueLien('Rechercher')
 		# consulter le premier résultat.
-		self.browser.clickResultAction(0,"Consulter demande")
+		self.browser.cliqueResultatAction(0,"Consulter demande")
 		
 		self.browser.cliqueOnglet('Poste / Moyens')
 		

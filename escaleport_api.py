@@ -184,12 +184,12 @@ class escaleportDriver(webdriver.Firefox):
 			else:
 				raise ValueError(f"L'inputType {fieldDesc['inputType']} du champ {fieldId} n'est pas géré.")
 	
-	def resultContent(self):
+	def tableResultat(self):
 		""" retourne le tableau de résultat pour analyse et permettre de trouver celui qui nous intéresse."""
 		"""FIXME: à faire"""
 		pass
 		
-	def clickResultAction(self, resultNbr=0, actionLabel=None):
+	def cliqueResultatAction(self, resultNbr=0, actionLabel=None):
 		""" Dans un tableau de résultats sélectionne l'action actionLabel du résultat resultNbr.
 			Les numéros des résultats commencent à 0. Le premier est en haut le dernier en bas.
 			si resultNbr est omis, le premier résultat est sélectionné.
@@ -197,7 +197,6 @@ class escaleportDriver(webdriver.Firefox):
 			
 		# cliquer sur le bouton action de la ligne resultNbr (commence à 0)
 		self.find_element_by_id(f"menu{resultNbr}").find_element_by_xpath("./..").click()
-		#time.sleep(1)
 		# cliquer sur l'action Voulue
 		if actionLabel is None:
 			# TODO
