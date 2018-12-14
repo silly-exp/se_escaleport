@@ -24,11 +24,10 @@ class EscaleportTestCase(unittest.TestCase):
 		#self.addCleanup(self.browser.quit)
 		
 	def _testChoisirPort(self):
-		#self.cerbereLogin("admintechcentral", "1")
-		self.browser.fillForm({"identifiant":"capg141", "motDePasse":"14"}, "cerbereLogin")
-		
-		# Sélection du port de Caen : inutile si on est en capg141
-		self.browser.fillForm({'port':"Caen"})
+		# s'identifier sur cerbere
+		self.browser.cerbereLogin({"uid":"pnd", "pwd":"1"})
+		self.browser.fillForm({'idPortLocode':"Caen"})
+		self.browser.cliqueLien('Valider')
 
 
 	def _testCreerDAPAQ(self):
@@ -37,8 +36,7 @@ class EscaleportTestCase(unittest.TestCase):
 		"""
 		# s'identifier sur cerbere
 		self.browser.cerbereLogin({"uid":"pnd", "pwd":"1"})
-		# Sélection du port de Caen : inutile si on est en capg141
-		#self.browser.fillForm({'port':"Caen"})
+		# choisir un port
 		self.browser.fillForm({'idPortLocode':"Caen"})
 		self.browser.cliqueLien('Valider')
 
@@ -67,9 +65,6 @@ class EscaleportTestCase(unittest.TestCase):
 							   'niveauInspection':'Aucune inspection',
 							   'avarie':'Non'})
 		self.browser.cliqueLien('Enregistrer')
-		self.browser.cliqueOnglet('Postes et moyens')
-		self.browser.fillForm(...)
-		self.browser.cliqueLien('Enregistrer')
 
 
 	def testRechercherDemande(self):
@@ -78,20 +73,19 @@ class EscaleportTestCase(unittest.TestCase):
 		"""
 		# s'identifier sur cerbere
 		self.browser.cerbereLogin({"uid":"pnd", "pwd":"1"})
-		# Sélection du port de Caen : inutile si on est en capg141
-		#self.browser.fillForm({'port':"Caen"})
 		self.browser.fillForm({'idPortLocode':"Caen"})
 		self.browser.cliqueLien('Valider')
 
 		self.browser.cliqueMenu("Rechercher demande")
 		# formulaire de recherche
-		#self.browser.fillForm({'dateDebut':"10102018",'dateFin':"11102018"})
 		self.browser.fillForm({'numDemande':"2018000745",'dateDebut':"",'dateFin':""})
 		self.browser.cliqueLien('Rechercher')
 		# consulter le premier résultat.
 		self.browser.cliqueResultatAction(0,"Consulter demande")
 		
 		self.browser.cliqueOnglet('Poste / Moyens')
+		#self.browser.fillForm(...)
+		#self.browser.cliqueLien('Enregistrer')
 		
 		
 
