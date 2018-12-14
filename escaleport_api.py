@@ -130,7 +130,7 @@ class escaleportDriver(webdriver.Firefox):
 		pwdField.submit() # FIXME c'est un peu louche parce que c'est le formulaire que je veux soumettre...
 		self.waitTokenGuardOnNewPage()
 		
-	def getFormFields(self):
+	def _getFormFields(self):
 		try:
 			formElem = self.find_element(By.XPATH, "//td[@class='corpsDePage']/form[@name!='MenuForm']")
 		except : #selenium.common.exceptions.NoSuchElementException:
@@ -157,7 +157,7 @@ class escaleportDriver(webdriver.Firefox):
 		""" Remplir le formulaire de la page courante avec les paramètres params.
 		"""
 		# analyse de la page pour trouver les champs du formulaire
-		formFields = self.getFormFields()
+		formFields = self._getFormFields()
 		#print(formFields)
 		
 		# valider les id des parametres
