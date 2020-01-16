@@ -1,0 +1,20 @@
+{
+    "env": {
+        "prod": {
+            "url": "https://e-scaleport.din.developpement-durable.gouv.fr/",
+            "url_visiteur": "https://e-scaleport-ext.din.developpement-durable.gouv.fr/"
+        },
+        "integration": {
+            "url": "https://escaleport-test.csam.e2.rie.gouv.fr/",
+            "url_visiteur": "https://escaleport-test.csam.e2.rie.gouv.fr/escaleport/visiteur/iAuthentification"
+        },
+        "recette": {
+            "url": "http://escaleport-{version}.recette.e2.rie.gouv.fr/",
+            "url_visiteur": "http://escaleport-{version}.recette.e2.rie.gouv.fr/visiteur/iAuthentification"
+        },
+        "local": {
+            "url": "http://localhost:8080/escaleport/",
+            "url_visiteur": "http://localhost:8080/escaleport/visiteur/iAuthentification"
+        }
+    }
+}
